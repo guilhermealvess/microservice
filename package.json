@@ -1,0 +1,28 @@
+{
+  "name": "micro",
+  "version": "1.0.0",
+  "description": "Trabalho #1 da disciplina de Arquitetura de Software Aplicada",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilhermealves3340/microservice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guilhermealves3340/microservice/issues"
+  },
+  "homepage": "https://github.com/guilhermealves3340/microservice#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.0",
+    "pg": "^7.11.0",
+    "sequelize": "^5.8.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
