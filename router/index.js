@@ -1,69 +1,81 @@
 const express = require("express");
-const engine = require("../processor");
+const functions = require("../processor");
 
 var home = express.Router();
 
-var categorias = express.Router();
-var produtos = express.Router();
-var fornecedores = express.Router();
-var compras = express.Router();
-var vendas = express.Router();
-var vendedores = express.Router();
+var disciplinas = express.Router("/disciplina");
+var professor = express.Router("/professor");
+var aluno = express.Router("/aluno");
 
-var routers = [
-  home,
-  categorias,
-  produtos,
-  fornecedores,
-  compras,
-  vendas,
-  vendedores
-];
+disciplinas.get("/select", (req, res) => {
+  res.status(200).json(functions.create("disciplina"));
+});
 
-function __get(routers) {
-  routers.forEach(router => {
-    router.get("/select", (req, res) => {
-      console.log(req.body);
-      res.status(200).json(req.body);
-    });
-  });
-}
+professor.get("/select", (req, res) => {
+  res.status(200).json(functions.create("professor"));
+});
 
-function __post(routers) {
-  routers.forEach(router => {
-    router.post("/insert", (req, res) => {
-      res.status(200).json();
-    });
-  });
-}
+aluno.get("/select", (req, res) => {
+  res.status(200).json(functions.create("aluno"));
+});
 
-function __put(routers) {
-  routers.forEach(router => {
-    router.put("/update", (req, res) => {
-      res.status(200).json();
-    });
-  });
-}
+disciplinas.put("/update", (req, res) => {
+  var data = req.body.newData;
+  var id = { id_disciplina: req.body.id };
+  functions.update(data, "disciplina", id);
+  res.status(200);
+});
 
-function __delete(routers) {
-  routers.forEach(router => {
-    router.delete("/delete", (req, res) => {
-      res.status(200).json();
-    });
-  });
-}
+aluno.put("/update", (req, res) => {
+  var data = req.body.newData;
+  var id = { id_disciplina: req.body.id };
+  functions.update(data, "aluno", id);
+  res.status(200);
+});
 
-__get(routers);
-__post(routers);
-__put(routers);
-__delete(routers);
+professor.put("/update", (req, res) => {
+  var data = req.body.newData;
+  var id = { id_disciplina: req.body.id };
+  functions.update(data, "professor", id);
+  res.status(200);
+});
+
+disciplinas.post("/create", (req, res) => {
+  functions.create(req.body, "disciplina");
+  res.status(200);
+});
+
+aluno.post("/create", (req, res) => {
+  functions.create(req.body, "aluno");
+  res.status(200);
+});
+
+professor.post("/create", (req, res) => {
+  functions.create(req.body, "professor");
+  res.status(200);
+});
+
+disciplinas.delete("/delete", (req, res) => {
+  var id = req.body.id;
+  functions._delete("disciplina", id);
+  res.status(200);
+});
+
+aluno.delete("/delete", (req, res) => {
+  var id = req.body.id;
+  functions._delete("aluno", id);
+  res.status(200);
+});
+
+professor.delete("/delete", (req, res) => {
+  var id = req.body.id;
+  functions._delete("professor", id);
+  res.status(200);
+});
 
 module.exports = {
   home,
-  categorias,
-  produtos,
-  fornecedores,
-  compras,
-  vendas,
-  vendedores
+  disciplinas,
+  aluno,
+  professor
 };

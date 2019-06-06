@@ -12,6 +12,7 @@ sequelize
     console.error("Unable to connect to the database:", err);
   });
 
+/*
 const Categorias = sequelize.define("tb_categorias", {
   id_categoria: {
     type: Sequelize.INTEGER,
@@ -249,23 +250,74 @@ const Compras = sequelize.define("tb_compras", {
     allowNull: false
   }
 });
-
-sequelize.sync().then(() =>
-  Categorias.create({
-    id_categoria: 5,
-    tituloCategoria: "Bala",
-    descricaoCategoria: "Bala Halls",
-    fg_ativo: 1
-  })
-);
-
-/*
-module.exports = {
-  Vendedores,
-  Categorias,
-  Fornecedores,
-  Produtos,
-  Compras,
-  Vendas
-};
 */
+//////////////////////////////////////////////// DAQUI PRA FRENTE ///////////////////////////////////////////
+
+const Professor = sequelize.define("tb_professor", {
+  matricula_professor: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    primaryKey: true
+  },
+  nome: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  faculdade: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+});
+
+const Disciplina = sequelize.define("tb_disciplina", {
+  matricula_professor: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    references: {
+      model: Professor,
+      key: "matricula_professor",
+      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    }
+  },
+  id_disciplina: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: "compositeIndex",
+    primaryKey: true
+  },
+  carga: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  }
+});
+
+const Aluno = sequelize.define("tb_aluno", {
+  matricula: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    primaryKey: true
+  },
+  nome: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  curso: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  data_de_nascimento: {
+    type: Sequelize.DATE,
+    allowNull: false
+  },
+  id_disciplina: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    references: {
+      model: Disciplina,
+      key: "id_disciplina",
+      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    }
+  }
+});
+
+module.exports = { Aluno, Disciplina, Professor, sequelize };
