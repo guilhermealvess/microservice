@@ -13,31 +13,33 @@ function classe(table) {
   }
 }
 
-function create(data, table) {
+function create(req, res, table) {
   table = classe(table);
-  table.create(data);
+  table.create(req.body).then(() => {
+    res.status(200).send("OK");
+  });
 }
 
-function update(data, table, id) {
+function read(res, table) {
   table = classe(table);
-  table.update(
-    { data },
-    {
-      where: id
-    }
-  );
-  return true;
+  table.findAll().then(result => {
+    res.status(200).json(result);
+  });
 }
 
-function read(table) {
+function update(req, res, table) {
   table = classe(table);
-  return table.findAll();
+  table.update(req.body.data, { where: req.body.id }).then(() => {
+    res.status(200).send("OK");
+  });
 }
 
-function _delete(table, id) {
+function _delete(req, res, table) {
   table = classe(table);
-  table.destroy(id);
-  return true;
+
+  table.destroy(req.body.id).then(() => {
+    res.status(200).send("OK");
+  });
 }
 
 module.exports = { create, update, read, _delete };
