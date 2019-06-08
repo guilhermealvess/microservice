@@ -320,4 +320,6 @@ const Aluno = sequelize.define("tb_aluno", {
   }
 });
 
+sequelize.sync();
+
 module.exports = { Aluno, Disciplina, Professor, sequelize };
