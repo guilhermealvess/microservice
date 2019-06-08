@@ -26,15 +26,15 @@ aluno.get("/select", (req, res) => {
 
 //CREATE
 
-disciplina.post("/create", (req, res) => {
+disciplina.post("/insert", (req, res) => {
   functions.create(req, res, "disciplina");
 });
 
-professor.post("/create", (req, res) => {
+professor.post("/insert", (req, res) => {
   functions.create(req, res, "professor");
 });
 
-aluno.post("/create", (req, res) => {
+aluno.post("/insert", (req, res) => {
   functions.create(req, res, "aluno");
 });
 
