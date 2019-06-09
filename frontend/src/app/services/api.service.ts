@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 
 import { environment } from "./../../environments/environment";
 import { map } from "rxjs/operators";
+import { Observable } from "rxjs";
 //import "rxjs/add/observable/"
 
 @Injectable({
@@ -11,7 +12,7 @@ import { map } from "rxjs/operators";
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  select(table: string) {
+  test_request(table: string) {
     //return this.http.get<any>(`${environment.apiUrl}/${table}/select`);
     return this.http
       .get("https://viacep.com.br/ws/38412472/json")
@@ -22,6 +23,17 @@ export class ApiService {
         })
       )
       .subscribe();
+  }
+
+  async select() {
+    await this.http
+      .get("http://localhost:3000/professor/select", {
+        observe: "response"
+      })
+      .toPromise()
+      .then(data => {
+        return data;
+      });
   }
 
   insert(table: string, data) {

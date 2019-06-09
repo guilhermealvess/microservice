@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 import { ApiService } from "../../services/api.service";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-professor",
@@ -8,15 +9,7 @@ import { ApiService } from "../../services/api.service";
   styleUrls: ["./professor.component.css"]
 })
 export class ProfessorComponent implements OnInit {
-  constructor(private apiService: ApiService) {
-    //var insert = this.apiService.insert("professor", {});
-    var test = this.apiService.test();
-
-    /*    var result = this.apiService.select("professor");
-    console.log("[RESULT] ->", result);*/
-    //var res = this.apiService.select("professor");
-    console.log("DEU CERTO ", this.apiService.select("professor"));
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {}
 }
