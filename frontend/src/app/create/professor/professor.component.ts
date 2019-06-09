@@ -9,7 +9,13 @@ import { map } from "rxjs/operators";
   styleUrls: ["./professor.component.css"]
 })
 export class ProfessorComponent implements OnInit {
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    nome: string,
+    matricula_professor: string,
+    faculdade: string,
+    id_disciplina: string
+  ) {}
 
   ngOnInit() {}
 }
