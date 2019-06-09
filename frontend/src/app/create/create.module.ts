@@ -10,7 +10,7 @@ import { ApiService } from "./../services/api.service";
 @NgModule({
   declarations: [ProfessorComponent, AlunoComponent, DisciplinaComponent],
   imports: [CommonModule, FormsModule],
-  exports: [ProfessorComponent, AlunoComponent],
+  exports: [ProfessorComponent, AlunoComponent, DisciplinaComponent],
   providers: [ApiService]
 })
 export class CreateModule {}
