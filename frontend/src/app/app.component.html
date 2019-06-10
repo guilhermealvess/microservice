@@ -86,11 +86,13 @@
       <div class="col-sm-6 offset-sm-3">
         <!--<alert></alert>-->
         <router-outlet></router-outlet>
-        <app-aluno></app-aluno>
-        <app-professor></app-professor>
-        <app-disciplina></app-disciplina>
         <div class="container">
-          <button type="button" class="btn btn-primary btn-lg btn-block">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg btn-block"
+            [routerLink]="['/professor']"
+            routerLinkActive="router-link-active"
+          >
             Iniciar
           </button>
         </div>

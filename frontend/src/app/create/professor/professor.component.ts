@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 import { ApiService } from "../../services/api.service";
 import { map } from "rxjs/operators";
@@ -9,7 +10,7 @@ import { map } from "rxjs/operators";
   styleUrls: ["./professor.component.css"]
 })
 export class ProfessorComponent implements OnInit {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {}
 }
