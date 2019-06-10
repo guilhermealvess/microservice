@@ -6,11 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./disciplina.component.css"]
 })
 export class DisciplinaComponent implements OnInit {
-  constructor(
-    matricula_professor: string,
-    id_disciplina: string,
-    carga_horaria: Int16Array
-  ) {}
+  constructor() {}
 
   ngOnInit() {}
 }
