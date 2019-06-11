@@ -253,6 +253,19 @@ const Compras = sequelize.define("tb_compras", {
 */
 //////////////////////////////////////////////// DAQUI PRA FRENTE ///////////////////////////////////////////
 
+const Disciplina = sequelize.define("tb_disciplina", {
+  id_disciplina: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: "compositeIndex",
+    primaryKey: true
+  },
+  carga: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  }
+});
+
 const Professor = sequelize.define("tb_professor", {
   matricula_professor: {
     type: Sequelize.STRING,
@@ -266,28 +279,15 @@ const Professor = sequelize.define("tb_professor", {
   faculdade: {
     type: Sequelize.STRING,
     allowNull: false
-  }
-});
-
-const Disciplina = sequelize.define("tb_disciplina", {
-  matricula_professor: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    references: {
-      model: Professor,
-      key: "matricula_professor",
-      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-    }
   },
   id_disciplina: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: "compositeIndex",
-    primaryKey: true
-  },
-  carga: {
-    type: Sequelize.INTEGER,
-    allowNull: false
+    references: {
+      model: Disciplina,
+      key: "id_disciplina",
+      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    }
   }
 });
 
@@ -305,8 +305,8 @@ const Aluno = sequelize.define("tb_aluno", {
     type: Sequelize.STRING,
     allowNull: false
   },
-  data_de_nascimento: {
-    type: Sequelize.DATE,
+  data_nascimento: {
+    type: Sequelize.STRING,
     allowNull: false
   },
   id_disciplina: {
@@ -320,8 +320,56 @@ const Aluno = sequelize.define("tb_aluno", {
   }
 });
 
-sequelize.sync({ force: true }).then(() => {
-  Aluno.bulkCreate([]);
-});
+sequelize
+  .sync({ force: true })
+  .then(() => {
+    Disciplina.bulkCreate([
+      {
+        id_disciplina: "12",
+        carga: "3"
+      },
+
+      {
+        id_disciplina: "13",
+        carga: "4"
+      }
+    ]);
+  })
+  .then(() => {
+    Professor.bulkCreate([
+      {
+        matricula_professor: "1",
+        nome: "marcio",
+        faculdade: "UFU",
+        id_disciplina: "12"
+      },
+
+      {
+        matricula_professor: "2",
+        nome: "marcelao",
+        faculdade: "UFU",
+        id_disciplina: "13"
+      }
+    ]);
+  })
+  .then(() => {
+    Aluno.bulkCreate([
+      {
+        matricula: "3",
+        nome: "aquino",
+        curso: "teatro",
+        data_nascimento: "1995-02-1",
+        id_disciplina: "12"
+      },
+
+      {
+        matricula: "8",
+        nome: "andre",
+        curso: "engenharia",
+        data_nascimento: "1994-02-1",
+        id_disciplina: "13"
+      }
+    ]);
+  });
 
 module.exports = { Aluno, Disciplina, Professor, sequelize };
