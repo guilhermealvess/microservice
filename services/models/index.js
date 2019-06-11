@@ -280,6 +280,10 @@ const Professor = sequelize.define("tb_professor", {
     type: Sequelize.STRING,
     allowNull: false
   },
+  disciplina: {
+    type: Sequelize.STRING,
+    allowNull: false
+  } /*
   id_disciplina: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -288,7 +292,7 @@ const Professor = sequelize.define("tb_professor", {
       key: "id_disciplina",
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
-  }
+  }*/
 });
 
 const Aluno = sequelize.define("tb_aluno", {
@@ -308,7 +312,7 @@ const Aluno = sequelize.define("tb_aluno", {
   data_nascimento: {
     type: Sequelize.STRING,
     allowNull: false
-  },
+  } /*,
   id_disciplina: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -317,12 +321,10 @@ const Aluno = sequelize.define("tb_aluno", {
       key: "id_disciplina",
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
-  }
+  }*/
 });
 
-sequelize
-  .sync({ force: true })
-  .then(() => {
+/*.then(() => {
     Disciplina.bulkCreate([
       {
         id_disciplina: "12",
@@ -334,21 +336,26 @@ sequelize
         carga: "4"
       }
     ]);
-  })
+  })*/
+
+sequelize
+  .sync({ force: true })
   .then(() => {
     Professor.bulkCreate([
       {
         matricula_professor: "1",
         nome: "marcio",
         faculdade: "UFU",
-        id_disciplina: "12"
+        disciplina: "MTP" /*
+        id_disciplina: "12"*/
       },
-
       {
         matricula_professor: "2",
         nome: "marcelao",
         faculdade: "UFU",
-        id_disciplina: "13"
+        disciplina: "ITC" /*
+        /*,
+        id_disciplina: "13"*/
       }
     ]);
   })
@@ -358,18 +365,17 @@ sequelize
         matricula: "3",
         nome: "aquino",
         curso: "teatro",
-        data_nascimento: "1995-02-1",
-        id_disciplina: "12"
+        data_nascimento: "1995-02-1" /*,
+        id_disciplina: "12"*/
       },
-
       {
         matricula: "8",
         nome: "andre",
         curso: "engenharia",
-        data_nascimento: "1994-02-1",
-        id_disciplina: "13"
+        data_nascimento: "1994-02-1" /*,
+        id_disciplina: "13"*/
       }
     ]);
   });
 
-module.exports = { Aluno, Disciplina, Professor, sequelize };
+module.exports = { Aluno, Professor, sequelize };
