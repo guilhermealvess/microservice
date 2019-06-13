@@ -33,11 +33,22 @@ export class ApiService {
       .toPromise()
       .then(data => {
         return data;
+      })
+      .catch(() => {
+        return false;
       });
   }
 
   insert(table: string, data) {
-    this.http.post<any>(`${environment.apiUrl}/insert/${table}`, data);
+    return this.http
+      .post<any>(`${environment.apiUrl}/${table}/insert`, data)
+      .toPromise()
+      .then(() => {
+        return true;
+      })
+      .catch(() => {
+        return false;
+      });
   }
 
   update(table: string, data) {

@@ -1,4 +1,3 @@
-import { DisciplinaComponent } from "./create/disciplina/disciplina.component";
 import { AlunoComponent } from "./create/aluno/aluno.component";
 import { RouterModule } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
@@ -20,8 +19,7 @@ import { ProfessorComponent } from "./create/professor/professor.component";
     HttpClientModule,
     RouterModule.forRoot([
       { path: "aluno", component: AlunoComponent },
-      { path: "professor", component: ProfessorComponent },
-      { path: "disciplina", component: DisciplinaComponent }
+      { path: "professor", component: ProfessorComponent }
     ])
   ],
   providers: [],

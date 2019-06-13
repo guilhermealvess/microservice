@@ -1,57 +1,71 @@
-<form [formGroup]="formularioDeUsuario" (ngSubmit)="getData()">
-  <div class="col-md-8 order-md-1">
-    <h4 class="mb-3">Aluno</h4>
-    <form class="needs-validation" novalidate>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="firstName">Matricula</label>
-          <input
-            type="text"
-            class="form-control"
-            id="firstName"
-            placeholder=""
-            value=""
-            required
-          />
-          <div class="invalid-feedback"></div>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="lastName">Nome</label>
-          <input
-            type="text"
-            class="form-control"
-            id="lastName"
-            placeholder=""
-            value=""
-            required
-          />
-          <div class="invalid-feedback"></div>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="lastName">Curso</label>
-          <input
-            type="text"
-            class="form-control"
-            id="lastName"
-            placeholder=""
-            value=""
-            required
-          />
-          <div class="invalid-feedback"></div>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="lastName">Data_nascimento</label>
-          <input
-            type="date"
-            class="form-control"
-            id="lastName"
-            placeholder=""
-            value=""
-            required
-          />
-          <div class="invalid-feedback"></div>
-        </div>
+<div class="col-md-8 order-md-1">
+  <h4 class="mb-3">Aluno</h4>
+  <form
+    class="needs-validation"
+    novalidate
+    [formGroup]="formsAluno"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="firstName">Matricula</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder=""
+          value=""
+          required
+          formControlName="matricula"
+        />
+        <div class="invalid-feedback"></div>
       </div>
-    </form>
-  </div>
-</form>
+      <div class="col-md-6 mb-3">
+        <label for="lastName">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+          value=""
+          required
+          formControlName="nome"
+        />
+        <div class="invalid-feedback"></div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="lastName">Curso</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+          value=""
+          required
+          formControlName="curso"
+        />
+        <div class="invalid-feedback"></div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="lastName">Data_nascimento</label>
+        <input
+          type="date"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+          value=""
+          required
+          formControlName="data_nascimento"
+        />
+        <div class="invalid-feedback"></div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg btn-block"
+        [disabled]="!formsAluno.valid"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>

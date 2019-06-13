@@ -5,13 +5,12 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { ProfessorComponent } from "./professor/professor.component";
 import { AlunoComponent } from "./aluno/aluno.component";
-import { DisciplinaComponent } from "./disciplina/disciplina.component";
 import { ApiService } from "./../services/api.service";
 
 @NgModule({
-  declarations: [ProfessorComponent, AlunoComponent, DisciplinaComponent],
+  declarations: [ProfessorComponent, AlunoComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [ProfessorComponent, AlunoComponent, DisciplinaComponent],
+  exports: [ProfessorComponent, AlunoComponent],
   providers: [ApiService]
 })
 export class CreateModule {}
