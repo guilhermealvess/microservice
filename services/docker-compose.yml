@@ -1,6 +1,15 @@
 version: "3"
 
 services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    container_name: db_asa_microservice
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+
   app:
     build: .
     command: npm run dev
