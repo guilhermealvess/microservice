@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY package*.json /app/
 
+#instalando especificamente o angular js 
 RUN npm install -g @angular/cli
 RUN npm install
 

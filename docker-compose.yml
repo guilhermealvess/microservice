@@ -1,6 +1,8 @@
+#vai ler os dois dockerfile e criar containers e gerencia-los
 version: "3"
 
 services:
+  #criando o container do front
   client:
     build: client
     ports:
@@ -8,6 +10,7 @@ services:
     volumes:
       - ./client:/app
 
+  #criando o container do backend
   app:
     build: services
     ports:
@@ -15,11 +18,11 @@ services:
     links:
       - database
     command: npm run dev
-
+  #criando container do banco
   database:
     image: postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
