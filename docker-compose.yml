@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  client:
+    build: client
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./client:/app
+
+  app:
+    build: services
+    ports:
+      - "3000:3000"
+    links:
+      - database
+    command: npm run dev
+
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: asa
